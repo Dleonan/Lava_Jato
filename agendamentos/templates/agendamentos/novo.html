@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Novo Agendamento{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'agendamentos/css/agendamentos.css' %}">
+{% endblock %}
+
+{% block titulo %}Novo Agendamento{% endblock %}
+
+{% block conteudo %}
+<div class="box-agendamento">
+    <h2>Agendar Serviço</h2>
+    <form method="post">
+        {% csrf_token %}
+
+        <label for="cliente">Cliente:</label>
+        <select name="cliente" required>
+            {% for cliente in clientes %}
+            <option value="{{ cliente.id }}">{{ cliente.nome }} - {{ cliente.veiculo }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="servico">Serviço:</label>
+        <select name="servico" required>
+            {% for servico in servicos %}
+            <option value="{{ servico.id }}">{{ servico.nome }} - R$ {{ servico.valor }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="data">Data:</label>
+        <input type="date" name="data" required>
+
+        <label for="hora">Hora:</label>
+        <input type="time" name="hora" required>
+
+        <label for="status">Status:</label>
+        <select name="status" required>
+            <option value="Aguardando">Aguardando</option>
+            <option value="Em Lavagem">Em Lavagem</option>
+            <option value="Finalizado">Finalizado</option>
+        </select>
+
+        <label for="observacoes">Observações:</label>
+        <textarea name="observacoes"></textarea>
+
+        <button type="submit">Agendar</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Sistema Lava Rápido{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'inicio/css/style.css' %}">
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <div class="sidebar">
+        <img src="{% static 'inicio/img/logo.png' %}" alt="Logo" class="logo">
+        <nav>
+            <ul>
+                <li><a href="{% url 'index' %}"><span>🏠</span></a></li>
+                <li><a href="{% url 'listar_servicos' %}"><span>🛠️</span></a></li>
+                <li><a href="{% url 'listar_clientes' %}"><span>👤</span></a></li>
+                <li><a href="{% url 'abrir_caixa' %}"><span>🛒</span></a></li>
+                <li><a href="{% url 'resumo_caixa' %}" title="Resumo do Caixa"><span>📊</span></a></li>
+                <li><a href="{% url 'listar_agendamentos' %}"><span>📅</span></a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="topbar">
+        <h1 class="titulo-sessao">{% block titulo %}{% endblock %}</h1>
+        {% if user.is_authenticated %}
+        <form method="post" action="{% url 'logout' %}" class="logout-form">
+            {% csrf_token %}
+            <button type="submit" class="logout-btn" title="Sair">🔒 Sair</button>
+        </form>
+        {% endif %}
+    </div>
+
+    <main class="conteudo">
+        {% if messages %}
+        <div class="mensagens">
+            {% for message in messages %}
+            <div class="alerta {{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    
+        {% block conteudo %}{% endblock %}
+    </main>
+
+    <footer class="rodape">
+        <p>&copy; 2025 Leonan Matheus Leyedecker – Todos os direitos reservados. |
+            <a href="https://github.com/Dleonan" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </p>
+    </footer>
+    
+    {% block scripts %}{% endblock %}
+</body>
+</html>

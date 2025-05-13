@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Cadastro de Serviços{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'servicos/css/servicos.css' %}">
+<script src="{% static 'servicos/js/modal.js' %}" defer></script>
+{% endblock %}
+
+{% block titulo %}
+Cadastro de Serviços
+{% endblock %}
+
+{% block conteudo %}
+<div class="box-servico">
+    <div class="cabecalho-servico">
+        <h2>Cadastro de Serviços</h2>
+        <button id="btnAbrirModal">+ Novo Serviço</button>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Serviço</th>
+                <th>Valor (R$)</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for servico in servicos %}
+            <tr>
+                <td>{{ servico.nome }}</td>
+                <td>{{ servico.valor }}</td>
+                <td>
+                    <a href="{% url 'editar_servico' servico.id %}" class="editar" title="Editar">✏️</a>
+                    <form method="post" action="{% url 'excluir_servico' servico.id %}" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="excluir" title="Excluir" onclick="return confirm('Tem certeza que deseja excluir este serviço?')">🗑️</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- Modal -->
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <span class="fechar">&times;</span>
+        <h3>Adicionar Novo Serviço</h3>
+        <form method="post">
+            {% csrf_token %}
+            <label for="nome">Nome:</label>
+            <input type="text" name="nome" required>
+            <label for="valor">Valor (R$):</label>
+            <input type="number" name="valor" step="0.01" required>
+            <button type="submit">Salvar</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

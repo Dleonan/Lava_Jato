@@ -1,0 +1,28 @@
+/* Estatísticas - Estilos básicos */
+table { width: 100%; border-collapse: collapse; }
+table, th, td { border: 1px solid #ddd; }
+th, td { padding: 8px; text-align: center; }
+h1 { color: #4CAF50; font-size: 2em; }
+
+/* Container flexível para o canvas */
+.chart-container {
+  position: relative;
+  width: 60%;          /* ocupa 60% da largura disponível */
+  max-width: 600px;     /* não fica maior que 600px */
+  height: 400px;        /* altura fixa para o canvas */
+  margin-top: 30px;
+  margin-left: 0;       /* alinhado à esquerda */
+}
+
+/* Específico para posicionar alinhado ao conteúdo */
+.chart-container.diario,
+.chart-container.mensal {
+  margin-left: 60px;    /* considerando sidebar + padding */
+}
+
+/* canvas responsivo dentro do container */
+.chart-container canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}

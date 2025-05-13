@@ -1,0 +1,86 @@
+
+.box-caixa, .box-venda {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 500px;
+    margin: 80px auto;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.box-caixa h2, .box-venda h2 {
+    margin-top: 0;
+    color: #007bff;
+    text-align: center;
+}
+
+.box-caixa form, .box-venda form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.box-caixa input, .box-venda input,
+.box-caixa select, .box-venda select {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+.box-caixa button, .box-venda button {
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.box-caixa button:hover, .box-venda button:hover {
+    background-color: #0056b3;
+    transform: scale(1.02);
+}
+
+.mensagens {
+    margin-bottom: 20px;
+}
+
+.alerta {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+}
+
+.alerta.info {
+    background-color: #17a2b8;
+}
+
+.alerta.success {
+    background-color: #28a745;
+}
+
+.alerta.warning {
+    background-color: #ffc107;
+    color: black;
+}
+
+button.fechar-caixa {
+    background-color: #dc3545;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+button.fechar-caixa:hover {
+    background-color: #bd2130;
+}

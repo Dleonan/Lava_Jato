@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Agendamentos Agendados{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'agendamentos/css/agendamentos.css' %}">
+{% endblock %}
+
+{% block titulo %}Agendamentos Agendados{% endblock %}
+
+{% block conteudo %}
+<div class="box-agendamento">
+<div class="header-agendamento">
+    <h2>📅 Agendamentos</h2>
+    <a href="{% url 'criar_agendamento' %}" class="botao-novo">+ Novo Agendamento</a>
+    <a href="{% url 'estatisticas_diarias' %}" class="botao-novo">Grafico lavagens Diarias</a>
+    <a href="{% url 'estatisticas_mensais' %}" class="botao-novo">Grafico lavagens Mensais</a>
+</div>
+
+
+    {% if agendamentos %}
+    <table class="tabela-agendamento">
+        <thead>
+            <tr>
+                <th>Cliente</th>
+                <th>Veículo</th>
+                <th>Serviço</th>
+                <th>Data</th>
+                <th>Hora</th>
+                <th>Status</th>
+                <th>Ação</th> <!-- Coluna de Ação -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for agendamento in agendamentos %}
+            <tr>
+                <td>{{ agendamento.cliente.nome }}</td>
+                <td>{{ agendamento.cliente.veiculo }}</td>
+                <td>{{ agendamento.servico.nome }}</td>
+                <td>{{ agendamento.data|date:"d/m/Y" }}</td>
+                <td>{{ agendamento.hora|time:"H:i" }}</td>
+                <td>{{ agendamento.status }}</td>
+                <td>
+                    <!-- Formulário para alterar o status -->
+                    <form action="{% url 'alterar_status' agendamento.id %}" method="post">
+        {% csrf_token %}
+        <select name="status" required {% if agendamento.status == 'Finalizado' %}disabled{% endif %}>
+            <option value="Aguardando" {% if agendamento.status == 'Aguardando' %}selected{% endif %}>Aguardando</option>
+            <option value="Em Lavagem" {% if agendamento.status == 'Em Lavagem' %}selected{% endif %}>Em Lavagem</option>
+            <option value="Finalizado" {% if agendamento.status == 'Finalizado' %}selected{% endif %}>Finalizado</option>
+        </select>
+        <button type="submit" {% if agendamento.status == 'Finalizado' %}disabled{% endif %}>Alterar</button>
+    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p class="nenhum-registro">Nenhum agendamento registrado.</p>
+    {% endif %}
+</div>
+{% endblock %}

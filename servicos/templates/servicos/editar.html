@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Editar Serviço{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'servicos/css/editar.css' %}">
+{% endblock %}
+
+{% block titulo %}
+Editar Serviço
+{% endblock %}
+
+{% block conteudo %}
+<div class="form-edicao-servico">
+  <h2>Editar Serviço</h2>
+  <form method="post">
+    {% csrf_token %}
+    <label for="nome">Nome:</label>
+    <input type="text" name="nome" value="{{ servico.nome }}" required>
+
+    <label for="valor">Valor (R$):</label>
+    <input type="number" name="valor" value="{{ servico.valor }}" step="0.01" required>
+
+    <button type="submit">Salvar</button>
+  </form>
+</div>
+{% endblock %}

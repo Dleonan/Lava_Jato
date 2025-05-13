@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Resumo do Caixa{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'vendas/css/vendas.css' %}">
+{% endblock %}
+
+{% block titulo %}Resumo do Caixa{% endblock %}
+
+{% block conteudo %}
+<div class="box-venda">
+    <h2>📦 Resumo do Caixa Atual</h2>
+    <ul>
+        {% for item in resumo %}
+            <li><strong>{{ item.venda__forma_pagamento__descricao }}:</strong> R$ {{ item.total|floatformat:2 }}</li>
+        {% empty %}
+            <li>Nenhuma venda registrada neste caixa.</li>
+        {% endfor %}
+    </ul>
+    <hr>
+    <h3>Total Geral: R$ {{ total_geral|floatformat:2 }}</h3>
+</div>
+
+{% if caixas_fechados %}
+<div class="box-venda" style="margin-top: 40px;">
+    <h2>📁 Caixas Fechados</h2>
+    {% for caixa in caixas_fechados %}
+        <div style="border-top: 1px solid #ccc; padding-top: 10px; margin-top: 10px;">
+            <p><strong>Aberto em:</strong> {{ caixa.aberto_em|date:"d/m/Y H:i" }}</p>
+            <p><strong>Fechado em:</strong> {{ caixa.fechado_em|date:"d/m/Y H:i" }}</p>
+            <p><strong>Valor Inicial:</strong> R$ {{ caixa.valor_inicial|floatformat:2 }}</p>
+            <p><strong>Valor Final:</strong> R$ {{ caixa.valor_final|floatformat:2 }}</p>
+        </div>
+    {% empty %}
+        <p>Nenhum caixa fechado até o momento.</p>
+    {% endfor %}
+</div>
+{% endif %}
+{% endblock %}

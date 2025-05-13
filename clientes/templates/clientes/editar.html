@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Editar Cliente{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'clientes/css/editar.css' %}">
+{% endblock %}
+
+{% block titulo %}
+Editar Cliente
+{% endblock %}
+
+{% block conteudo %}
+<div class="form-edicao-cliente">
+  <h2>Editar Cliente</h2>
+  <form method="post">
+    {% csrf_token %}
+    <label>Nome:</label>
+    <input type="text" name="nome" value="{{ cliente.nome }}" required>
+    
+    <label>Telefone:</label>
+    <input type="text" name="telefone" value="{{ cliente.telefone }}" required>
+
+    <label>Veículo:</label>
+    <input type="text" name="veiculo" value="{{ cliente.veiculo }}" required>
+
+    <label>Modelo:</label>
+    <input type="text" name="modelo" value="{{ cliente.modelo }}" required>
+
+    <label>Cor:</label>
+    <input type="text" name="cor" value="{{ cliente.cor }}" required>
+
+    <label>Placa:</label>
+    <input type="text" name="placa" value="{{ cliente.placa }}" required>
+
+    <button type="submit">Salvar</button>
+  </form>
+</div>
+{% endblock %}

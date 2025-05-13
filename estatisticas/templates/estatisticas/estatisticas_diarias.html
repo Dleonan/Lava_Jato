@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Estatísticas Diárias{% endblock %}
+{% block conteudo %}
+  <h1>Estatísticas Diárias</h1>
+
+  <div class="chart-container diario">
+    <canvas id="grafico_diario"></canvas>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    window.graficoDiarioData = {{ grafico_diario_json|safe }};
+  </script>
+  <script src="{% static 'estatisticas/js/estatisticas.js' %}"></script>
+{% endblock %}

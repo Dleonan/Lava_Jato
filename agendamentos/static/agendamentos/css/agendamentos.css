@@ -1,0 +1,100 @@
+.box-agendamento {
+    background: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    max-width: 900px;
+    margin: 60px auto;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.08);
+}
+
+.header-agendamento {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.header-agendamento h2 {
+    color: #007bff;
+    font-size: 24px;
+    margin: 0;
+}
+
+.botao-novo {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 18px;
+    font-weight: bold;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.botao-novo:hover {
+    background-color: #218838;
+    transform: scale(1.03);
+}
+
+.tabela-agendamento {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.tabela-agendamento th, .tabela-agendamento td {
+    border: 1px solid #dee2e6;
+    padding: 12px;
+    text-align: left;
+}
+
+.tabela-agendamento thead {
+    background-color: #f8f9fa;
+}
+
+.tabela-agendamento tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.tabela-agendamento th {
+    color: #495057;
+}
+
+.nenhum-registro {
+    text-align: center;
+    font-style: italic;
+    color: #888;
+    margin-top: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+form label {
+    font-weight: bold;
+}
+
+form input, form select {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+form button {
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+
+form button:hover {
+    background-color: #0056b3;
+    transform: scale(1.02);
+}

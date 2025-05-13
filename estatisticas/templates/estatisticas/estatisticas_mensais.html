@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Estatísticas Mensais{% endblock %}
+{% block conteudo %}
+  <h1>Estatísticas Mensais</h1>
+
+  <div class="chart-container mensal">
+    <canvas id="grafico_mensal"></canvas>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    window.graficoMensalData = {{ grafico_mensal_json|safe }};
+  </script>
+  <script src="{% static 'estatisticas/js/estatisticas.js' %}"></script>
+{% endblock %}
