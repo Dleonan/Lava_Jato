@@ -5,6 +5,7 @@ from clientes.models import Cliente
 from servicos.models import Servico
 from django.utils import timezone
 from django.db.models import Sum
+from decimal import Decimal
 import json
 from django.core.serializers.json import DjangoJSONEncoder
 
@@ -36,10 +37,10 @@ def registrar_venda(request):
         cliente_id = request.POST.get('cliente')
         forma_pagamento_id = request.POST.get('forma_pagamento')
         servico_id = request.POST.get('servico')
-        valor = float(request.POST.get('valor'))
-        desconto = float(request.POST.get('desconto', 0))
+        valor = Decimal(request.POST.get('valor'))
+        desconto = Decimal(request.POST.get('desconto', 0))
 
-        valor_final = max(valor - desconto, 0)
+        valor_final = max(valor - desconto, Decimal('0'))
 
         venda = Venda.objects.create(
             cliente_id=cliente_id,
