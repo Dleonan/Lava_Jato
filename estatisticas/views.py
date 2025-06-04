@@ -12,7 +12,7 @@ STATUS_CONFIG = [
 ]
 
 def _build_dataset(qs, labels):
-    """monta listas de valores por status, mantendo ordem fixa"""
+    """Monta e retorna o dataset do gráfico do Chart.js mantendo a ordem dos status"""
     stats = { item['status']: item['count'] for item in qs }
     data_list = []
     bg_list   = []
