@@ -1,0 +1,22 @@
+# Virtual environments
+venv/
+ENV/
+env/
+.venv/
+venv.bak/
+*.virtualenv
+
+# Compiled source files
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Database files
+*.sqlite3
+*.db
+*.db-journal
+
+# OS-specific artifacts
+.DS_Store
+Thumbs.db
+desktop.ini
